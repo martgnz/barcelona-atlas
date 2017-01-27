@@ -3,8 +3,8 @@
 # Quantization
 QU=1e4
 
-rm -rvf bcn
-mkdir -p build bcn
+rm -rvf barcelona
+mkdir -p build barcelona
 
 curl -o build/BCN_DIVADM_ETRS89_SHP.zip -C - 'https://raw.githubusercontent.com/martgnz/bcn-shp-zip/master/CAD_CIUTAT/DIVADM/BCN_DIVADM_ETRS89_SHP.ZIP'
 unzip -jod build build/BCN_DIVADM_ETRS89_SHP.zip
@@ -18,37 +18,37 @@ geo2topo -n census_tracts=<( \
   | topomerge neighborhoods=census_tracts -k 'd.properties.C_Barri' \
   | topomerge districts=neighborhoods -k 'd.properties.C_Distri' \
   | topomerge city=districts \
-  > bcn/census_tracts.json
+  > barcelona/census_tracts.json
 
 # Inspired by: https://bl.ocks.org/mbostock/39b34968ad5eab65de1d7da81f78bb27
 # Re-compute the topology as a further optimization.
 # This consolidates unique sequences of arcs.
 # https://github.com/topojson/topojson-simplify/issues/4
 topo2geo -n \
-  < bcn/census_tracts.json \
-  census_tracts=bcn/_census_tracts.json \
-  aeb=bcn/_aeb.json \
-  neighborhoods=bcn/_neighborhoods.json \
-  districts=bcn/_districts.json \
-  city=bcn/_city.json
+  < barcelona/census_tracts.json \
+  census_tracts=barcelona/_census_tracts.json \
+  aeb=barcelona/_aeb.json \
+  neighborhoods=barcelona/_neighborhoods.json \
+  districts=barcelona/_districts.json \
+  city=barcelona/_city.json
 
 geo2topo -n \
   census_tracts=<( \
-      cat bcn/_census_tracts.json \
+      cat barcelona/_census_tracts.json \
         | ndjson-map '(delete d.properties, d)') \
   aeb=<( \
-      cat bcn/_aeb.json \
+      cat barcelona/_aeb.json \
         | ndjson-map '(delete d.properties, d)') \
   neighborhoods=<( \
-      cat bcn/_neighborhoods.json \
+      cat barcelona/_neighborhoods.json \
         | ndjson-map '(delete d.properties, d)') \
   districts=<( \
-      cat bcn/_districts.json \
+      cat barcelona/_districts.json \
         | ndjson-map '(delete d.properties, d)') \
   city=<( \
-      cat bcn/_city.json \
+      cat barcelona/_city.json \
         | ndjson-map '(delete d.properties, d)') \
   | topoquantize $QU \
-  > bcn/census_tracts.json
+  > barcelona/census_tracts.json
 
-rm bcn/_census_tracts.json bcn/_aeb.json bcn/_neighborhoods.json bcn/_districts.json bcn/_city.json
+rm barcelona/_census_tracts.json barcelona/_aeb.json barcelona/_neighborhoods.json barcelona/_districts.json barcelona/_city.json
