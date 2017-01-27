@@ -79,4 +79,4 @@ A preprojected TopoJSON ([EPSG:3043](http://spatialreference.org/ref/epsg/etrs89
 
 The original idea and implementation comes from Mike Bostock’s [us-atlas](https://github.com/topojson/us-atlas) and [world-atlas](https://github.com/topojson/world-atlas).
 
-Check out [es-atlas](https://github.com/martgnz/es-atlas) and [madrid-atlas](https://github.com/martgnz/madrid-atlas), packages which provide other Spanish administrative regions data with the same format.
+Check out [es-atlas](https://github.com/martgnz/es-atlas) and [madrid-atlas](https://github.com/martgnz/madrid-atlas), which provide other Spanish administrative divisions with the same format.
