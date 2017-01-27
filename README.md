@@ -53,7 +53,7 @@ If you need to make further adjustments (simplification, quantization) you can c
 ## File Reference
 <a href="#barcelona/census_tracts.json" name="barcelona/census_tracts.json">#</a> <b>barcelona/census_tracts.json</b> [<>](https://martingonzalez.net/barcelona-tracts.v1.json "Source")
 
-A TopoJSON which contains six objects: *census tracts*, *basic statistic areas*, *neighborhoods*, *districts* and *city*. Every tract, neighborhood and district has its corresponding identifier, so it's easy to get started. 
+A preprojected TopoJSON ([EPSG:3043](http://spatialreference.org/ref/epsg/etrs89-etrs-tm31/)) which contains six objects: *census tracts*, *basic statistic areas*, *neighborhoods*, *districts* and *city*. Every tract, neighborhood and district has its corresponding identifier, so it's easy to get started. 
 
 <a href="#barcelona/census_tracts.json_census_tracts" name="barcelona/census_tracts.json_census_tracts">#</a> *barcelona*.objects.<b>census_tracts</b>
 
