@@ -73,8 +73,7 @@ A TopoJSON which contains six objects: *census tracts*, *basic statistic areas*,
 
 <a href="#barcelona/census_tracts.json_city" name="barcelona/census_tracts.json_city">#</a> *barcelona*.objects.<b>city</b>
 
-<img src="https://cloud.githubusercontent.com/assets/1236790/22386606/2f1ee3e2-e4d8-11e6-985b-be1d8fb66c81.png
-" width="480" height="auto">
+<img src="https://cloud.githubusercontent.com/assets/1236790/22386606/2f1ee3e2-e4d8-11e6-985b-be1d8fb66c81.png" width="480" height="auto">
 
 ### Inspiration
 
