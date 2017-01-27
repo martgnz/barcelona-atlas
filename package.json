@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/martgnz/bcn-atlas.git"
+    "url": "git+https://github.com/martgnz/barcelona-atlas.git"
   },
   "keywords": [
     "topojson",
