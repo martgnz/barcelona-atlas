@@ -1,0 +1,54 @@
+#!/bin/bash
+
+# Quantization
+QU=1e4
+
+rm -rvf bcn
+mkdir -p build bcn
+
+curl -o build/BCN_DIVADM_ETRS89_SHP.zip -C - 'https://raw.githubusercontent.com/martgnz/bcn-shp-zip/master/CAD_CIUTAT/DIVADM/BCN_DIVADM_ETRS89_SHP.ZIP'
+unzip -jod build build/BCN_DIVADM_ETRS89_SHP.zip
+
+geo2topo -n census_tracts=<( \
+    shp2json build/BCN_Secci%F3_Censal_ETRS89_SHP.shp \
+      | geoproject 'd3.geoIdentity().reflectY(true).fitSize([960, 500], d)' \
+      | ndjson-split 'd.features' \
+      | ndjson-map '(d.id = d.properties.C_SecCens, d)') \
+  | topomerge aeb=census_tracts -k 'd.properties.C_AEB' \
+  | topomerge neighborhoods=census_tracts -k 'd.properties.C_Barri' \
+  | topomerge districts=neighborhoods -k 'd.properties.C_Distri' \
+  | topomerge city=districts \
+  > bcn/census_tracts.json
+
+# Inspired by: https://bl.ocks.org/mbostock/39b34968ad5eab65de1d7da81f78bb27
+# Re-compute the topology as a further optimization.
+# This consolidates unique sequences of arcs.
+# https://github.com/topojson/topojson-simplify/issues/4
+topo2geo -n \
+  < bcn/census_tracts.json \
+  census_tracts=bcn/_census_tracts.json \
+  aeb=bcn/_aeb.json \
+  neighborhoods=bcn/_neighborhoods.json \
+  districts=bcn/_districts.json \
+  city=bcn/_city.json
+
+geo2topo -n \
+  census_tracts=<( \
+      cat bcn/_census_tracts.json \
+        | ndjson-map '(delete d.properties, d)') \
+  aeb=<( \
+      cat bcn/_aeb.json \
+        | ndjson-map '(delete d.properties, d)') \
+  neighborhoods=<( \
+      cat bcn/_neighborhoods.json \
+        | ndjson-map '(delete d.properties, d)') \
+  districts=<( \
+      cat bcn/_districts.json \
+        | ndjson-map '(delete d.properties, d)') \
+  city=<( \
+      cat bcn/_city.json \
+        | ndjson-map '(delete d.properties, d)') \
+  | topoquantize $QU \
+  > bcn/census_tracts.json
+
+rm bcn/_census_tracts.json bcn/_aeb.json bcn/_neighborhoods.json bcn/_districts.json bcn/_city.json
