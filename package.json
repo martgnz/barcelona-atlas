@@ -1,5 +1,5 @@
 {
-  "name": "bcn-atlas",
+  "name": "barcelona-atlas",
   "version": "0.1.0",
   "description": "Pre-built TopoJSON from CartoBCN",
   "scripts": {
