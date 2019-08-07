@@ -14,7 +14,7 @@ In a browser (using [d3-geo](https://github.com/d3/d3-geo) and SVG):
 const svg = d3.select("svg");
 const path = d3.geoPath();
 
-d3.json("https://martingonzalez.net/barcelona-tracts.v2.json")
+d3.json("https://unpkg.com/barcelona-atlas@0.2.0/barcelona/census_tracts.json")
   .then(barcelona => {
     svg
       .datum(barcelona)
