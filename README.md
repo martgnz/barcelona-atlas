@@ -49,14 +49,14 @@ context.stroke();
 canvas.pngStream().pipe(fs.createWriteStream("preview.png"));
 ```
 ## Generating the files
-Clone or download the repo, start a terminal and run `npm install` in the folder. This command will run the script and move the generated files to the `mad` folder.
+Clone or download the repo, start a terminal and run `npm install` in the folder. This command will run the script and move the generated files to the `barcelona` folder.
 
 If you need to make further adjustments (simplification, quantization) you can change the `prepublish` script and run `npm install` again. 
 
 ## File Reference
 <a href="#barcelona/census_tracts.json" name="barcelona/census_tracts.json">#</a> <b>barcelona/census_tracts.json</b> [<>](https://martingonzalez.net/barcelona-tracts.v1.json "Source")
 
-A preprojected TopoJSON ([EPSG:3043](http://spatialreference.org/ref/epsg/etrs89-etrs-tm31/)) which contains six objects: *census tracts*, *basic statistic areas*, *neighborhoods*, *big neighborhoods*, *districts* and *city*. Every tract, neighborhood and district has its corresponding identifier, so it's easy to get started. 
+A preprojected TopoJSON ([EPSG:3043](http://spatialreference.org/ref/epsg/etrs89-etrs-tm31/)) which contains six objects: *census tracts*, *basic statistic areas*, *neighborhoods*, *big neighborhoods*, *districts* and *city*. Every tract, neighborhood and district has its corresponding identifier, so it's easy to get started. See [reference metadata](http://w20.bcn.cat/cartobcn/getFile.ashx?t=bdd&f=47185360245555).
 
 <a href="#barcelona/census_tracts.json_census_tracts" name="barcelona/census_tracts.json_census_tracts">#</a> *barcelona*.objects.<b>census_tracts</b>
 
@@ -81,6 +81,12 @@ A preprojected TopoJSON ([EPSG:3043](http://spatialreference.org/ref/epsg/etrs89
 <a href="#barcelona/census_tracts.json_city" name="barcelona/census_tracts.json_city">#</a> *barcelona*.objects.<b>city</b>
 
 <img src="https://cloud.githubusercontent.com/assets/1236790/22386606/2f1ee3e2-e4d8-11e6-985b-be1d8fb66c81.png" width="480" height="auto">
+
+## Source
+
+Ajuntament de Barcelona / [CartoBCN](http://w20.bcn.cat/cartobcn/) ([CC-BY](http://w133.bcn.cat/geoportal/descargas/ca_ca_cond_us_carto.pdf)).
+
+Last data update: 28/11/2018.
 
 ### Inspiration
 
