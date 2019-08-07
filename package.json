@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "description": "Pre-built TopoJSON from CartoBCN",
   "scripts": {
-    "prepublish": "bash prepublish",
-    "postpublish": "git push && git push --tags && cd ../martgnz.github.io && git pull && cp -v ../barcelona-atlas/barcelona/census_tracts.json barcelona-tracts.v1.json && git add barcelona-tracts.v1.json && git commit -m \"barcelona-atlas ${npm_package_version}\" && git push && cd -"
+    "prepare": "bash prepublish",
+    "postpublish": "git push && git push --tags && cd ../portfolio && git pull && cp -v ../barcelona-atlas/barcelona/census_tracts.json static/barcelona-tracts.v2.json && git add static/barcelona-tracts.v2.json && git commit -m \"barcelona-atlas ${npm_package_version}\" && git push && ./deploy.sh && cd -"
   },
   "repository": {
     "type": "git",
@@ -17,17 +17,17 @@
     "barcelona"
   ],
   "author": {
-      "name": "Martín González",
-      "url": "https://martingonzalez.net"
+    "name": "Martín González",
+    "url": "https://martingonzalez.net"
   },
   "license": "MIT",
   "devDependencies": {
-    "d3-dsv": "^1.0.3",
-    "d3-geo-projection": "^1.2.1",
-    "ndjson-cli": "^0.3.0",
-    "shapefile": "^0.5.9",
-    "topojson-client": "^2.1.0",
-    "topojson-server": "^2.0.0",
-    "topojson-simplify": "^2.0.0"
+    "d3-dsv": "^1.1.1",
+    "d3-geo-projection": "^2.7.0",
+    "ndjson-cli": "^0.3.1",
+    "shapefile": "^0.6.6",
+    "topojson-client": "^3.0.0",
+    "topojson-server": "^3.0.0",
+    "topojson-simplify": "^3.0.2"
   }
 }

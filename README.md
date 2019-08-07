@@ -2,25 +2,28 @@
 This repository provides a simple script to generate TopoJSON files from [a mirror](https://github.com/martgnz/bcn-shp-zip) of the Barcelona City Council's [vector data](http://w20.bcn.cat/cartobcn/).
 
 ## Usage
-In a browser (using [d3-geo](https://github.com/d3/d3-geo) and Canvas):
+In a browser (using [d3-geo](https://github.com/d3/d3-geo) and SVG):
 
 ```html
 <!DOCTYPE html>
-<canvas width="960" height="500"></canvas>
-<script src="https://d3js.org/d3.v4.min.js"></script>
-<script src="https://d3js.org/topojson.v2.min.js"></script>
+<svg width="960" height="500"></svg>
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="https://d3js.org/topojson.v3.min.js"></script>
 <script>
 
-var context = d3.select("canvas").node().getContext("2d"),
-    path = d3.geoPath().context(context);
+const svg = d3.select("svg");
+const path = d3.geoPath();
 
-d3.json("https://martingonzalez.net/barcelona-tracts.v1.json", function(error, barcelona) {
-  if (error) throw error;
-
-  context.beginPath();
-  path(topojson.mesh(barcelona));
-  context.stroke();
-});
+d3.json("https://martingonzalez.net/barcelona-tracts.v2.json")
+  .then(barcelona => {
+    svg
+      .datum(barcelona)
+      .append('path')
+      .attr('d', path(topojson.mesh(barcelona, barcelona.objects.census_tracts)))
+      .attr('fill', 'none')
+      .attr('stroke', 'black');
+  })
+  .catch(err => console.warn(err));
 
 </script>
 
@@ -53,7 +56,7 @@ If you need to make further adjustments (simplification, quantization) you can c
 ## File Reference
 <a href="#barcelona/census_tracts.json" name="barcelona/census_tracts.json">#</a> <b>barcelona/census_tracts.json</b> [<>](https://martingonzalez.net/barcelona-tracts.v1.json "Source")
 
-A preprojected TopoJSON ([EPSG:3043](http://spatialreference.org/ref/epsg/etrs89-etrs-tm31/)) which contains six objects: *census tracts*, *basic statistic areas*, *neighborhoods*, *districts* and *city*. Every tract, neighborhood and district has its corresponding identifier, so it's easy to get started. 
+A preprojected TopoJSON ([EPSG:3043](http://spatialreference.org/ref/epsg/etrs89-etrs-tm31/)) which contains six objects: *census tracts*, *basic statistic areas*, *neighborhoods*, *big neighborhoods*, *districts* and *city*. Every tract, neighborhood and district has its corresponding identifier, so it's easy to get started. 
 
 <a href="#barcelona/census_tracts.json_census_tracts" name="barcelona/census_tracts.json_census_tracts">#</a> *barcelona*.objects.<b>census_tracts</b>
 
@@ -66,6 +69,10 @@ A preprojected TopoJSON ([EPSG:3043](http://spatialreference.org/ref/epsg/etrs89
 <a href="#barcelona/census_tracts.json_neighborhoods" name="barcelona/census_tracts.json_neighborhoods">#</a> *barcelona*.objects.<b>neighborhoods</b>
 
 <img src="https://cloud.githubusercontent.com/assets/1236790/22386579/097eeea2-e4d8-11e6-9286-5218a5494292.png" width="480" height="auto">
+
+<a href="#barcelona/census_tracts.json_big_neighborhoods" name="barcelona/census_tracts.json_big_neighborhoods">#</a> *barcelona*.objects.<b>big_neighborhoods</b>
+
+<img src="https://user-images.githubusercontent.com/1236790/62585037-f07c2980-b8ae-11e9-85ec-ae63c12779e8.png" width="480" height="auto">
 
 <a href="#barcelona/census_tracts.json_districts" name="barcelona/census_tracts.json_districts">#</a> *barcelona*.objects.<b>districts</b>
 

@@ -6,17 +6,18 @@ QU=1e4
 rm -rvf barcelona
 mkdir -p build barcelona
 
-curl -o build/BCN_DIVADM_ETRS89_SHP.zip -C - 'https://raw.githubusercontent.com/martgnz/bcn-shp-zip/master/CAD_CIUTAT/DIVADM/BCN_DIVADM_ETRS89_SHP.ZIP'
-unzip -jod build build/BCN_DIVADM_ETRS89_SHP.zip
+curl -o build/0301040100_BCN_Unitats_Adm.zip -C - 'https://raw.githubusercontent.com/martgnz/bcn-shp-zip/master/Unitats%20Administratives/Shp/0301040100_BCN_Unitats_Adm.ZIP'
+unzip -jod build build/0301040100_BCN_Unitats_Adm.zip
 
 geo2topo -n census_tracts=<( \
-    shp2json build/BCN_Secci%F3_Censal_ETRS89_SHP.shp \
+    shp2json build/0301040100_SecCens_ADM_ETRS89.shp \
       | geoproject 'd3.geoIdentity().reflectY(true).fitSize([960, 500], d)' \
       | ndjson-split 'd.features' \
-      | ndjson-map '(d.id = d.properties.C_SecCens, d)') \
-  | topomerge aeb=census_tracts -k 'd.properties.C_AEB' \
-  | topomerge neighborhoods=census_tracts -k 'd.properties.C_Barri' \
-  | topomerge districts=neighborhoods -k 'd.properties.C_Distri' \
+      | ndjson-map '(d.id = d.properties.SEC_CENS, d)') \
+  | topomerge aeb=census_tracts -k 'd.properties.AEB' \
+  | topomerge neighborhoods=census_tracts -k 'd.properties.BARRI' \
+  | topomerge big_neighborhoods=census_tracts -k 'd.properties.GRANBARRI' \
+  | topomerge districts=neighborhoods -k 'd.properties.DISTRICTE' \
   | topomerge city=districts \
   > barcelona/census_tracts.json
 
@@ -29,6 +30,7 @@ topo2geo -n \
   census_tracts=barcelona/_census_tracts.json \
   aeb=barcelona/_aeb.json \
   neighborhoods=barcelona/_neighborhoods.json \
+  big_neighborhoods=barcelona/_big_neighborhoods.json \
   districts=barcelona/_districts.json \
   city=barcelona/_city.json
 
@@ -42,6 +44,9 @@ geo2topo -n \
   neighborhoods=<( \
       cat barcelona/_neighborhoods.json \
         | ndjson-map '(delete d.properties, d)') \
+  big_neighborhoods=<( \
+      cat barcelona/_big_neighborhoods.json \
+        | ndjson-map '(delete d.properties, d)') \
   districts=<( \
       cat barcelona/_districts.json \
         | ndjson-map '(delete d.properties, d)') \
@@ -51,4 +56,4 @@ geo2topo -n \
   | topoquantize $QU \
   > barcelona/census_tracts.json
 
-rm barcelona/_census_tracts.json barcelona/_aeb.json barcelona/_neighborhoods.json barcelona/_districts.json barcelona/_city.json
+rm barcelona/_*.json
