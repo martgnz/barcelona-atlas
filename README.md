@@ -17,9 +17,8 @@ const path = d3.geoPath();
 d3.json("https://unpkg.com/barcelona-atlas@0.2.0/barcelona/census_tracts.json")
   .then(barcelona => {
     svg
-      .datum(barcelona)
       .append('path')
-      .attr('d', path(topojson.mesh(barcelona, barcelona.objects.census_tracts)))
+      .attr('d', path(topojson.mesh(barcelona)))
       .attr('fill', 'none')
       .attr('stroke', 'black');
   })
