@@ -53,9 +53,9 @@ Clone or download the repo, start a terminal and run `npm install` in the folder
 If you need to make further adjustments (simplification, quantization) you can change the `prepublish` script and run `npm install` again. 
 
 ## File Reference
-<a href="#barcelona/census_tracts.json" name="barcelona/census_tracts.json">#</a> <b>barcelona/census_tracts.json</b> [<>](https://martingonzalez.net/barcelona-tracts.v1.json "Source")
+<a href="#barcelona/census_tracts.json" name="barcelona/census_tracts.json">#</a> <b>barcelona/census_tracts.json</b>
 
-A preprojected TopoJSON ([EPSG:3043](http://spatialreference.org/ref/epsg/etrs89-etrs-tm31/)) which contains six objects: *census tracts*, *basic statistic areas*, *neighborhoods*, *big neighborhoods*, *districts* and *city*. Every tract, neighborhood and district has its corresponding identifier, so it's easy to get started. See [reference metadata](http://w20.bcn.cat/cartobcn/getFile.ashx?t=bdd&f=47185360245555).
+A preprojected TopoJSON ([EPSG:3043](http://spatialreference.org/ref/epsg/etrs89-etrs-tm31/)) which contains six objects: *census tracts*, *basic statistic areas*, *neighborhoods*, *big neighborhoods*, *districts* and *city*. Every tract, neighborhood and district has its corresponding identifier, so it's easy to get started. See [reference metadata](http://w20.bcn.cat/cartobcn/getFile.ashx?t=bdd&f=42588360097904).
 
 <a href="#barcelona/census_tracts.json_census_tracts" name="barcelona/census_tracts.json_census_tracts">#</a> *barcelona*.objects.<b>census_tracts</b>
 
@@ -85,7 +85,7 @@ A preprojected TopoJSON ([EPSG:3043](http://spatialreference.org/ref/epsg/etrs89
 
 Ajuntament de Barcelona / [CartoBCN](http://w20.bcn.cat/cartobcn/) ([CC-BY](http://w133.bcn.cat/geoportal/descargas/ca_ca_cond_us_carto.pdf)).
 
-Last data update: 28/11/2018.
+Last data update: 11/03/2020.
 
 ### Inspiration
 

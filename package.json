@@ -4,7 +4,7 @@
   "description": "Pre-built TopoJSON from CartoBCN",
   "scripts": {
     "prepare": "bash prepublish",
-    "postpublish": "git push && git push --tags && cd ../portfolio && git pull && cp -v ../barcelona-atlas/barcelona/census_tracts.json static/barcelona-tracts.v2.json && git add static/barcelona-tracts.v2.json && git commit -m \"barcelona-atlas ${npm_package_version}\" && git push && ./deploy.sh && cd -"
+    "postpublish": "git push && git push --tags"
   },
   "repository": {
     "type": "git",
