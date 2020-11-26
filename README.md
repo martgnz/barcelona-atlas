@@ -53,7 +53,7 @@ Clone or download the repo, start a terminal and run `npm install` in the folder
 If you need to make further adjustments (simplification, quantization) you can change the `prepublish` script and run `npm install` again. 
 
 ## File Reference
-<a href="#barcelona/census_tracts.json" name="barcelona/census_tracts.json">#</a> <b>barcelona/census_tracts.json</b>
+<a href="#barcelona/census_tracts.json" name="barcelona/census_tracts.json">#</a> <b>barcelona/census_tracts.json</b> [Download TopoJSON](https://unpkg.com/barcelona-atlas@1.0.0/barcelona/census_tracts.json)
 
 A preprojected TopoJSON ([EPSG:3043](http://spatialreference.org/ref/epsg/etrs89-etrs-tm31/)) which contains six objects: *census tracts*, *basic statistic areas*, *neighborhoods*, *big neighborhoods*, *districts* and *city*. Every tract, neighborhood and district has its corresponding identifier, so it's easy to get started. See [reference metadata](http://w20.bcn.cat/cartobcn/getFile.ashx?t=bdd&f=42588360097904).
 
