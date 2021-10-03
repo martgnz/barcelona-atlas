@@ -1,4 +1,7 @@
 # Barcelona Atlas TopoJSON
+
+<img align="right" src="https://cloud.githubusercontent.com/assets/1236790/22386529/ca66b7ae-e4d7-11e6-942b-19f83226bccc.png" width="300" height="auto">
+
 This repository provides a simple script to generate TopoJSON files from [a mirror](https://github.com/martgnz/bcn-shp-zip) of the Barcelona City Council's [vector data](http://w20.bcn.cat/cartobcn/).
 
 ## Usage
